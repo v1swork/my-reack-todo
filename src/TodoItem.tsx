@@ -10,13 +10,14 @@ type TodoItemProps = {
 }
 
 export function TodoItem({ task, editingId, editingValue,
-    onToggle, onDelete, onEdit, onSave, setEditingValue}: TodoItemProps) {
+    onToggle, onDelete, onEdit, onSave, setEditingValue}: TodoItemProps) { 
     return (
-        <li key={task.id}>
+        <li>
               <input 
                 type="checkbox" 
                 checked={task.done}
                 onChange={() => onToggle(task.id)}
+                
               />
 
               { editingId === task.id ? (
@@ -26,7 +27,9 @@ export function TodoItem({ task, editingId, editingValue,
                   onChange={(e) => setEditingValue(e.target.value)} 
                   onKeyDown={(e) => {
                     if (e.key === 'Enter') onSave(task.id);
+                    
                   }}
+                  
                 />
               ) : ( 
                 <span style={{ textDecoration: task.done ? 'line-through': 'none'}}>
@@ -35,7 +38,7 @@ export function TodoItem({ task, editingId, editingValue,
               )}
 
               { editingId === task.id ? (
-                  <button onClick={() => onSave(task.id)}>сохранить</button> 
+                  <button onClick={() => onSave(task.id)} >сохранить</button> 
                 ) : (
                   <button onClick={() => onEdit(task)}>Редактировать</button>
                 )
@@ -52,3 +55,4 @@ export function TodoItem({ task, editingId, editingValue,
             </li>
     )
 }
+
